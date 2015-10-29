@@ -5,10 +5,12 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -51,6 +53,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    private static final String USERNAME = "username";
     static JSONObject obj;
     private static int code = -1;
     /**
@@ -65,16 +68,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private UserLoginTask mAuthTask = null;
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
     // UI references.
     private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
@@ -335,7 +341,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 HttpClient httpclient = new DefaultHttpClient();
 
                 // 2. make POST request to the given URL
-                HttpPost httpPost = new HttpPost("http://10.207.114.12:3000/login");
+                HttpPost httpPost = new HttpPost("http://10.207.115.110:3000/login");
 
                 String json = "";
 
@@ -408,7 +414,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
 //                finish();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
 
+                editor.putString(USERNAME, mEmail);
+                editor.commit();
                 Intent myIntent = new Intent(getApplicationContext(), AdminActivity.class);
                 startActivity(myIntent);
                 finish();
