@@ -29,7 +29,8 @@ public class AdminActivity extends AppCompatActivity {
     StudentListAdapter rvAdapter;
     BroadcastReceiver mBroadcastReceiver;
     ArrayList<String> names = new ArrayList<>();
-
+    ArrayList<String> userNames = new ArrayList<>();
+    ArrayList<String> addresses = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,17 +50,19 @@ public class AdminActivity extends AppCompatActivity {
                     pbLoading.setVisibility(View.INVISIBLE);
                     rvStudentList.setVisibility(View.VISIBLE);
                     try {
-                        JSONArray jsonArray = new JSONArray(getSharedPreferences("myPrefs",
+                        JSONArray jsonArray = new JSONArray(getSharedPreferences("MyPrefs",
                                 Context.MODE_PRIVATE).getString("all_data", null));
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject obj = jsonArray.getJSONObject(i);
                             String name = obj.getString("fname") + " " +obj.getString("lname");
                             names.add(name);
+                            addresses.add(obj.getString("address"));
+                            userNames.add(obj.getString("username"));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    rvAdapter = new StudentListAdapter(names);
+                    rvAdapter = new StudentListAdapter(names , userNames, AdminActivity.this, addresses);
                     rvStudentList.setAdapter(rvAdapter);
                 }
             }

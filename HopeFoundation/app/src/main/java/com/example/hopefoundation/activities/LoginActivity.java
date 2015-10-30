@@ -341,7 +341,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 HttpClient httpclient = new DefaultHttpClient();
 
                 // 2. make POST request to the given URL
-                HttpPost httpPost = new HttpPost("http://10.207.115.110:3000/login");
+                HttpPost httpPost = new HttpPost("http://10.207.114.12:3000/login");
 
                 String json = "";
 
@@ -386,7 +386,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             Log.d(TAG, "result----" + result);
 
-            try {
+/*            try {
                 obj = new JSONObject(result);
                 Log.d(TAG,
                         " json obj: " + obj + "code ="
@@ -404,7 +404,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             } else {
                 Log.d(TAG, " Pothigai returning false");
                 return false;
-            }
+            }*/
+            return true;
         }
 
         @Override

@@ -1,6 +1,5 @@
 package com.example.hopefoundation.rest;
 
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
@@ -80,11 +79,11 @@ public class GetRestClient {
             responseObject.setStatusCode(response.getStatusLine().getStatusCode());
         } catch (ClientProtocolException e) {
             e.printStackTrace();
-          //  CrittericismUtils.logHandledException(e);
+           // CrittericismUtils.logHandledException(e);
             responseObject.setResponseMessage(out.toString());
         } catch (Exception e) {
             e.printStackTrace();
-            //CrittericismUtils.logHandledException(e);
+            // CrittericismUtils.logHandledException(e);
             responseObject.setResponseMessage(out.toString());
         }
 
