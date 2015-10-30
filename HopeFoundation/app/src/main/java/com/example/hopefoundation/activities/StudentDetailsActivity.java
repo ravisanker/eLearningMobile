@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.example.hopefoundation.R;
-import com.example.hopefoundation.services.FetchStudentsService;
 import com.example.hopefoundation.services.StudentDetailsService;
 
 import org.json.JSONException;
@@ -66,11 +65,10 @@ public class StudentDetailsActivity extends AppCompatActivity {
                 } catch (JSONException e1) {
                     e1.printStackTrace();
                 }
-
-
             }
         };
     }
+
     @Override
     protected void onResume() {
         super.onResume();
