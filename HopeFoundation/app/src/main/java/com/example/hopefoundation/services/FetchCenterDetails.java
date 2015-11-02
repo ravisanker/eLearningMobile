@@ -10,20 +10,17 @@ import android.util.Log;
 import com.example.hopefoundation.rest.GetRestClient;
 import com.example.hopefoundation.rest.ResponseStatusMessage;
 
-/**
- * Created by Ravi sanker on 10/30/2015.
- */
-public class FetchStudentsService extends IntentService {
-    public static final String PLANS = "plans";
-    public static String DEBUG_TAG = FetchStudentsService.class.getSimpleName();
+public class FetchCenterDetails extends IntentService {
+    public static final String CENTRES = "centers";
+    public static String DEBUG_TAG = FetchCenterDetails.class.getSimpleName();
     private SharedPreferences sharedPreferences;
 
-    public FetchStudentsService() {
+    public FetchCenterDetails() {
         super(DEBUG_TAG);
     }
 
     public static void startService(Activity context) {
-        Intent intent = new Intent(context, FetchStudentsService.class);
+        Intent intent = new Intent(context, FetchCenterDetails.class);
         context.startService(intent);
     }
 
@@ -31,7 +28,9 @@ public class FetchStudentsService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", null);
-        String url = "http://10.207.114.12:3000/api/studentsByFaculty?username=" + username;
+
+        String url = "http://10.207.114.12:3000/api/centres";
+
         Log.d(DEBUG_TAG, "Url: " + url);
         GetRestClient getRestClient = new GetRestClient();
         ResponseStatusMessage resp = getRestClient.getResponse(url);
@@ -44,9 +43,11 @@ public class FetchStudentsService extends IntentService {
     }
 
     public void handleResponse(String responseMessage) {
-        sharedPreferences.edit().putString("all_data", responseMessage.toString()).commit();
+
+        // DynamicMenuEntryPref.getInstance().setMenuEntriesJSON(responseMessage).commit();
+        sharedPreferences.edit().putString("all_centers", responseMessage.toString()).commit();
         Log.d(DEBUG_TAG, "success"+ responseMessage.toString());
-        Intent success = new Intent(PLANS);
+        Intent success = new Intent(CENTRES);
         sendBroadcast(success);
 
     }

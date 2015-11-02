@@ -10,15 +10,16 @@ import android.util.Log;
 import com.example.hopefoundation.rest.GetRestClient;
 import com.example.hopefoundation.rest.ResponseStatusMessage;
 
+import org.json.JSONArray;
+
 /**
  * Created by Ravi sanker on 10/30/2015.
  */
-public class FetchStudentsService extends IntentService {
-    public static final String PLANS = "plans";
-    public static String DEBUG_TAG = FetchStudentsService.class.getSimpleName();
-    private SharedPreferences sharedPreferences;
+public class StudentDetailsService extends IntentService {
+    public static final String DEBUG_TAG = StudentDetailsService.class.getSimpleName();
+    public static final String KEY_SUCCESS = "success";
 
-    public FetchStudentsService() {
+    public StudentDetailsService() {
         super(DEBUG_TAG);
     }
 
@@ -29,9 +30,9 @@ public class FetchStudentsService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String username = sharedPreferences.getString("username", null);
-        String url = "http://10.207.114.12:3000/api/studentsByFaculty?username=" + username;
+
+        String username = intent.getStringExtra("username");
+        String url = "http://10.207.114.12:3000/student/" + username;
         Log.d(DEBUG_TAG, "Url: " + url);
         GetRestClient getRestClient = new GetRestClient();
         ResponseStatusMessage resp = getRestClient.getResponse(url);
@@ -44,9 +45,10 @@ public class FetchStudentsService extends IntentService {
     }
 
     public void handleResponse(String responseMessage) {
-        sharedPreferences.edit().putString("all_data", responseMessage.toString()).commit();
-        Log.d(DEBUG_TAG, "success"+ responseMessage.toString());
-        Intent success = new Intent(PLANS);
+        //sharedPreferences.edit().putString("all_data", responseMessage.toString()).commit();
+        Log.d(DEBUG_TAG, "success");
+        getSharedPreferences("MyPrefs", Context.MODE_PRIVATE).edit().putString("student_details", responseMessage).commit();
+        Intent success = new Intent(KEY_SUCCESS);
         sendBroadcast(success);
 
     }

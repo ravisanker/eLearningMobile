@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private static final String USERNAME = "username";
     static JSONObject obj;
     private static int code = -1;
+    private static String type = "";
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
@@ -111,54 +112,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void populateAutoComplete() {
-//        if (!mayRequestContacts()) {
-//            return;
-//        }
-
         getLoaderManager().initLoader(0, null, this);
     }
 
-//    private boolean mayRequestContacts() {
-//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-//            return true;
-//        }
-//        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-//            return true;
-//        }
-//        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-//            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_LONG)
-//                    .setAction(android.R.string.ok, new OnClickListener() {
-//                        @Override
-//                        @TargetApi(Build.VERSION_CODES.M)
-//                        public void onClick(View v) {
-//                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-//                        }
-//                    });
-//        } else {
-//            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-//        }
-//        return false;
-//    }
-
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-//                                           @NonNull int[] grantResults) {
-//        if (requestCode == REQUEST_READ_CONTACTS) {
-//            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                populateAutoComplete();
-//            }
-//        }
-//    }
-
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
@@ -341,7 +297,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 HttpClient httpclient = new DefaultHttpClient();
 
                 // 2. make POST request to the given URL
-                HttpPost httpPost = new HttpPost("http://10.207.115.110:3000/login");
+                HttpPost httpPost = new HttpPost("http://10.207.114.12:3000/login");
 
                 String json = "";
 
@@ -390,7 +346,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 obj = new JSONObject(result);
                 Log.d(TAG,
                         " json obj: " + obj + "code ="
-                                + obj.getInt("status"));
+                                + obj.getInt("status") + "type ="+ obj.getString("type"));
                 code = obj.getInt("status");
 
             } catch (JSONException e) {
@@ -399,7 +355,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Log.d(TAG, " code value received : " + code);
 
             if (code == 200) {
-                Log.d(TAG, " Pothigai returning true");
+                Log.d(TAG, " Pothigai returning true :");
+                try {
+                    type = obj.getString("type");
+                    Log.d(TAG, " Pothigai returning true :"+obj.getString("type") );
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 return true;
             } else {
                 Log.d(TAG, " Pothigai returning false");
@@ -418,9 +380,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 editor.putString(USERNAME, mEmail);
                 editor.commit();
-                Intent myIntent = new Intent(getApplicationContext(), AdminActivity.class);
-                startActivity(myIntent);
-                finish();
+
+                if(type.equals("A")) {
+                    Log.d(TAG,"User type is SuperUser");
+                    Intent myIntent = new Intent(getApplicationContext(), SuperAdminActivity.class);
+                    startActivity(myIntent);
+                    finish();
+                } else if(type.equals("F")){
+                    Log.d(TAG,"User type is Faculty");
+                    Intent myIntent = new Intent(getApplicationContext(), AdminActivity.class);
+                    startActivity(myIntent);
+                    finish();
+                }
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
