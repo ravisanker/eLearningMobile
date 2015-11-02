@@ -4,21 +4,29 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+<<<<<<< HEAD
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+=======
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
 import android.widget.TextView;
 
 import com.example.hopefoundation.R;
 import com.example.hopefoundation.services.StudentDetailsService;
+<<<<<<< HEAD
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+=======
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,14 +45,18 @@ public class StudentDetailsActivity extends AppCompatActivity {
     private TextView tvLastName;
     private TextView tvLevel;
     private TextView tvHours;
+<<<<<<< HEAD
     ImageLoader imageLoader;
     private DisplayImageOptions options;
     private ImageView ivDisplayImage;
+=======
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_details);
+<<<<<<< HEAD
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(this));
         options = new DisplayImageOptions.Builder()
@@ -55,6 +67,9 @@ public class StudentDetailsActivity extends AppCompatActivity {
                 .build();
         tvAadhaar = (TextView) findViewById(R.id.tv_aadhaar);
         ivDisplayImage = (ImageView) findViewById(R.id.iv_detail_image);
+=======
+        tvAadhaar = (TextView) findViewById(R.id.tv_aadhaar);
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
         tvAddress = (TextView) findViewById(R.id.tv_address);
         tvCentre = (TextView) findViewById(R.id.tv_centre);
         tvDoB = (TextView) findViewById(R.id.tv_dob);
@@ -63,7 +78,11 @@ public class StudentDetailsActivity extends AppCompatActivity {
         tvLastName = (TextView) findViewById(R.id.tv_last_name);
         tvLevel = (TextView) findViewById(R.id.tv_level);
         tvHours = (TextView) findViewById(R.id.tv_hours);
+<<<<<<< HEAD
         final Bundle extras = getIntent().getExtras();
+=======
+        Bundle extras = getIntent().getExtras();
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
         Intent intent = new Intent(this, StudentDetailsService.class);
         intent.putExtra("username", extras.getString("username"));
         startService(intent);
@@ -79,6 +98,7 @@ public class StudentDetailsActivity extends AppCompatActivity {
                     tvFirstName.setText(obj.getString("fname"));
                     tvLastName.setText(obj.getString("lname"));
                     tvAddress.setText(obj.getString("address"));
+<<<<<<< HEAD
                     ImageSize targetSize = new ImageSize(250, 250);
                     imageLoader.loadImage("http://10.207.114.12:3000/images/" + extras.getString("username") + ".jpg", targetSize, options, new SimpleImageLoadingListener() {
                         @Override
@@ -87,6 +107,9 @@ public class StudentDetailsActivity extends AppCompatActivity {
                         }
                     });
                     tvAadhaar.setText(obj.getString("adhaarCard"));
+=======
+                    tvAadhaar.setText(obj.getString("aadharCard"));
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
                     tvDoB.setText(obj.getString("dob"));
                     tvEnrollDate.setText(obj.getString("enrollDate"));
                     tvCentre.setText(obj.getString("centre"));

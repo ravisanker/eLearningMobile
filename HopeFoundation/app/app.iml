@@ -92,7 +92,16 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="recyclerview-v7-23.1.0" level="project" />
+=======
+    <orderEntry type="library" exported="" name="universal-image-loader-1.8.5-with-sources" level="project" />
+    <orderEntry type="library" exported="" name="universal-image-loader-1.9.4-with-sources" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-22.2.1" level="project" />
+    <orderEntry type="library" exported="" name="recyclerview-v7-22.2.1" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-22.2.1" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
     <orderEntry type="library" exported="" name="design-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.1.0" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.8.5-with-sources" level="project" />

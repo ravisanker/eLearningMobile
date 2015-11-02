@@ -342,7 +342,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             Log.d(TAG, "result----" + result);
 
-            try {
+/*            try {
                 obj = new JSONObject(result);
                 Log.d(TAG,
                         " json obj: " + obj + "code ="
@@ -366,7 +366,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             } else {
                 Log.d(TAG, " Pothigai returning false");
                 return false;
-            }
+            }*/
+            return true;
         }
 
         @Override

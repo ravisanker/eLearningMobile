@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <manifest package="com.example.hopefoundation"
           xmlns:android="http://schemas.android.com/apk/res/android">
+=======
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.hopefoundation">
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.READ_PROFILE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +23,7 @@
             android:name=".activities.LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
+<<<<<<< HEAD
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -27,10 +33,18 @@
         <activity
             android:name=".activities.StudentDetailsActivity"
             android:theme="@style/NoAction"></activity>
+=======
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.StudentDetailsActivity"></activity>
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
         <activity android:name=".activities.AdminActivity"></activity>
 
         <service
             android:name=".services.FetchStudentsService"
+<<<<<<< HEAD
             android:exported="false">
         </service>
 
@@ -50,6 +64,12 @@
             android:name=".services.StudentDetailsService"
             android:exported="false"></service>
 
+=======
+            android:exported="false"></service>
+        <service
+            android:name=".services.StudentDetailsService"
+            android:exported="false"></service>
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
     </application>
 
 </manifest>

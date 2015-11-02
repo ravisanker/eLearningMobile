@@ -10,6 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.hopefoundation.activities.LoginActivity">
+<<<<<<< HEAD
 
     <ImageView
         android:layout_width="180dp"
@@ -19,6 +20,8 @@
         android:id="@+id/imageView"
         android:background="@drawable/logo"
         />
+=======
+>>>>>>> 220f451994cd997bb6617065c2a19be48226687d
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
