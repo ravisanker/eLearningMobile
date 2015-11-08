@@ -1,22 +1,12 @@
 package com.example.hopefoundation.adapters;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hopefoundation.R;
-import com.example.hopefoundation.activities.StudentDetailsActivity;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageSize;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
 
@@ -39,14 +29,6 @@ public class StudentListAdapterv2 extends RecyclerView.Adapter<StudentListAdapte
     @Override
     public void onBindViewHolder(final CustomViewHolder holder, final int position) {
         holder.tvStudentName.setText(names.get(position));
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, StudentDetailsActivity.class);
-                intent.putExtra("username", userNames.get(position));
-                context.startActivity(intent);
-            }
-        }); */
     }
 
     @Override

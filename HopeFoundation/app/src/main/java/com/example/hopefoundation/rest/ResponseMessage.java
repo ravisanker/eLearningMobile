@@ -4,7 +4,7 @@ import com.example.hopefoundation.utils.JSONUtil;
 
 import org.json.JSONObject;
 
-public class ResponseStatusMessage {
+public class ResponseMessage {
 
     private int statusCode;
     private String responseMessage;
@@ -13,12 +13,12 @@ public class ResponseStatusMessage {
     public static final String CLIENT_ERROR = "Client Error";
     public static final String SERVER_ERROR = "Server error.";
 
-    public ResponseStatusMessage(int statusCode, String responseMessage) {
+    public ResponseMessage(int statusCode, String responseMessage) {
         this.statusCode = statusCode;
         this.responseMessage = responseMessage;
     }
 
-    public ResponseStatusMessage() {
+    public ResponseMessage() {
         // TODO Auto-generated constructor stub
     }
 

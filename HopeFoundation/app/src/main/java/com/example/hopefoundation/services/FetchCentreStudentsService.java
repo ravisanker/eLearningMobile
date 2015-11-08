@@ -7,8 +7,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.hopefoundation.rest.GetRestClient;
-import com.example.hopefoundation.rest.ResponseStatusMessage;
+import com.example.hopefoundation.rest.GetClient;
+import com.example.hopefoundation.rest.ResponseMessage;
 
 
 public class FetchCentreStudentsService extends IntentService {
@@ -33,8 +33,8 @@ public class FetchCentreStudentsService extends IntentService {
         temp = username.split(" ");
         String url = "http://10.207.114.12:3000/api/students?centre="+temp[0];
         Log.d(DEBUG_TAG, "Url: " + url);
-        GetRestClient getRestClient = new GetRestClient();
-        ResponseStatusMessage resp = getRestClient.getResponse(url);
+        GetClient getClient = new GetClient();
+        ResponseMessage resp = getClient.getResponse(url);
         if (resp.isFailure()) {
             return;
         }

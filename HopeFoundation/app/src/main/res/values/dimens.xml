@@ -7,8 +7,5 @@
     <dimen name="text_size_large">20sp</dimen>
     <dimen name="avatar_sz_small">40dp</dimen>
     <dimen name="avatar_sz_large">64dp</dimen>
-<<<<<<< HEAD
     <dimen name="avatar_sz_small2">150dp</dimen>
-=======
->>>>>>> 220f451994cd997bb6617065c2a19be48226687d
 </resources>

@@ -7,8 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.hopefoundation.rest.GetRestClient;
-import com.example.hopefoundation.rest.ResponseStatusMessage;
+import com.example.hopefoundation.constants.ApiUrls;
+import com.example.hopefoundation.rest.GetClient;
+import com.example.hopefoundation.rest.ResponseMessage;
 
 /**
  * Created by Ravi sanker on 10/30/2015.
@@ -31,10 +32,10 @@ public class FetchStudentsService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", null);
-        String url = "http://10.207.114.12:3000/api/studentsByFaculty?username=" + username;
+        String url = ApiUrls.getFetchStudentsUrl() + username;
         Log.d(DEBUG_TAG, "Url: " + url);
-        GetRestClient getRestClient = new GetRestClient();
-        ResponseStatusMessage resp = getRestClient.getResponse(url);
+        GetClient getClient = new GetClient();
+        ResponseMessage resp = getClient.getResponse(url);
         if (resp.isFailure()) {
             return;
         }
@@ -44,8 +45,8 @@ public class FetchStudentsService extends IntentService {
     }
 
     public void handleResponse(String responseMessage) {
-        sharedPreferences.edit().putString("all_data", responseMessage.toString()).commit();
-        Log.d(DEBUG_TAG, "success"+ responseMessage.toString());
+        sharedPreferences.edit().putString("all_data", responseMessage).apply();
+        Log.d(DEBUG_TAG, responseMessage);
         Intent success = new Intent(PLANS);
         sendBroadcast(success);
 

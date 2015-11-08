@@ -55,12 +55,8 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     public void onBindViewHolder(final StudentListAdapter.CustomViewHolder holder, final int position) {
         holder.tvStudentName.setText(names.get(position));
         holder.tvStudentLocation.setText(addresses.get(position));
-        ImageSize targetSize = new ImageSize(80, 50); // result Bitmap will be fit to this size
-<<<<<<< HEAD
+        ImageSize targetSize = new ImageSize(80, 50);
         imageLoader.loadImage("http://10.207.114.12:3000/images/" + userNames.get(position) + ".jpg", targetSize, options, new SimpleImageLoadingListener() {
-=======
-        imageLoader.loadImage("http://10.207.115.110:3000/images/" + userNames.get(position) + ".jpg", targetSize, options, new SimpleImageLoadingListener() {
->>>>>>> 220f451994cd997bb6617065c2a19be48226687d
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 holder.ivUserImage.setImageBitmap(loadedImage);

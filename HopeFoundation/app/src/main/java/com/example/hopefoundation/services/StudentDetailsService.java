@@ -4,13 +4,10 @@ import android.app.Activity;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.example.hopefoundation.rest.GetRestClient;
-import com.example.hopefoundation.rest.ResponseStatusMessage;
-
-import org.json.JSONArray;
+import com.example.hopefoundation.rest.GetClient;
+import com.example.hopefoundation.rest.ResponseMessage;
 
 /**
  * Created by Ravi sanker on 10/30/2015.
@@ -34,8 +31,8 @@ public class StudentDetailsService extends IntentService {
         String username = intent.getStringExtra("username");
         String url = "http://10.207.114.12:3000/student/" + username;
         Log.d(DEBUG_TAG, "Url: " + url);
-        GetRestClient getRestClient = new GetRestClient();
-        ResponseStatusMessage resp = getRestClient.getResponse(url);
+        GetClient getClient = new GetClient();
+        ResponseMessage resp = getClient.getResponse(url);
         if (resp.isFailure()) {
             return;
         }

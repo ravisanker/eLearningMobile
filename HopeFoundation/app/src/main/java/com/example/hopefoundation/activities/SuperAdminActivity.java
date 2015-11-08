@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,7 +17,6 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.example.hopefoundation.R;
-import com.example.hopefoundation.adapters.StudentListAdapter;
 import com.example.hopefoundation.adapters.StudentListAdapterv2;
 import com.example.hopefoundation.services.FetchCenterDetails;
 import com.example.hopefoundation.services.FetchCentreStudentsService;
@@ -89,7 +88,7 @@ public class SuperAdminActivity extends AppCompatActivity implements AdapterView
                         e.printStackTrace();
                     }
                     setInflate();
-                } else  if (pbLoading != null && intent.getAction().equals("centres_students")) {
+                } else if (pbLoading != null && intent.getAction().equals("centres_students")) {
                     pbLoading.setVisibility(View.INVISIBLE);
                     rvStudentList.setVisibility(View.VISIBLE);
                     try {
@@ -100,7 +99,7 @@ public class SuperAdminActivity extends AppCompatActivity implements AdapterView
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject obj = jsonArray.getJSONObject(i);
 //                            String name = obj.getString("fname") + " " + obj.getString("lname");
-                            String name = obj.getString("fname")+ " " + obj.getString("lname");
+                            String name = obj.getString("fname") + " " + obj.getString("lname");
                             namesRL.add(name);
                         }
                     } catch (JSONException e) {
@@ -139,7 +138,7 @@ public class SuperAdminActivity extends AppCompatActivity implements AdapterView
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Log.d(TAG, "onItemSelected"+ mSpinner.getSelectedItem().toString());
+        Log.d(TAG, "onItemSelected" + mSpinner.getSelectedItem().toString());
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putString(POSITION, mSpinner.getSelectedItem().toString());

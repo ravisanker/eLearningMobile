@@ -17,4 +17,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="exit_message">Are you sure you want to exit?</string>
+    <string name="exit_dialog_title">Exit</string>
 </resources>
